@@ -6,7 +6,8 @@ namespace Employee_Wage_Problem
     {
         const int Wage_per_Hour = 20;
         const int Full_Time_Working_Hours = 8;
-        const int Part_Time_Working_Hours = 4; 
+        const int Part_Time_Working_Hours = 4;
+        const int Working_Day_per_month = 20;
 
         public void Employee_Attendance()
         {
@@ -32,6 +33,15 @@ namespace Employee_Wage_Problem
             Console.WriteLine("Part Time Employee Wage is: " + Part_Time_Wage + "Rs");
 
         }
+
+        public void Employee_Wage_per_Month()
+        {
+            int Full_Time_Wage_per_Month = Wage_per_Hour*Full_Time_Working_Hours*Working_Day_per_month;
+            Console.WriteLine("Full Time Employee Wage per month is: " + Full_Time_Wage_per_Month);
+
+            int Part_Time_Wage_per_Month = Wage_per_Hour*Part_Time_Working_Hours *Working_Day_per_month;
+            Console.WriteLine("Part Time Employee Wage per month is: " + Part_Time_Wage_per_Month);
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage");
@@ -39,7 +49,8 @@ namespace Employee_Wage_Problem
 
             Console.WriteLine("1. Employee Attendance");
             Console.WriteLine("2. Employee Wage");
-            Console.WriteLine("Enter your choice (1 or 2): ");
+            Console.WriteLine("3. Wages for a Month");
+            Console.WriteLine("Enter your choice: ");
 
             int choice = Convert.ToInt32(Console.ReadLine());
 
@@ -53,8 +64,12 @@ namespace Employee_Wage_Problem
                     e.Employee_Wage();
                     break;
 
+                case 3:
+                    e.Employee_Wage_per_Month();
+                    break;
+
                 default:
-                    Console.WriteLine("Invlid Option. Please Select 1 or 2.");
+                    Console.WriteLine("Invlid Option.");
                     break;
 
             }
