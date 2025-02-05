@@ -9,22 +9,15 @@ namespace Employee_Wage_Problem
         const int Part_Time_Working_Hours = 4;
         const int Working_Day_per_month = 20;
 
-        public void Employee_Attendance()
-        {
-            Random random = new Random();
+        const int maxHours = 100;
+        const int maxDays = 20;
 
-            int attendanceCheck = random.Next(0, 2);
+        static int totalHoursWorked = 0;
+        static int totalDaysWorked = 0;
+        static int dailwage = 0;
+        static int Day = 0;
 
-            if (attendanceCheck == 1)
-            {
-                Console.WriteLine("Employee is Present.");
-            }
-            else
-            {
-                Console.WriteLine("Employee is Absent.");
-            }
-        }
-        public void Employee_Wage()
+        /*public void Employee_Wage()
         {
             int Full_Time_Wage = Wage_per_Hour * Full_Time_Working_Hours;
             Console.WriteLine("Daily Employee Wage is: " + Full_Time_Wage+"Rs");
@@ -41,39 +34,70 @@ namespace Employee_Wage_Problem
 
             int Part_Time_Wage_per_Month = Wage_per_Hour*Part_Time_Working_Hours *Working_Day_per_month;
             Console.WriteLine("Part Time Employee Wage per month is: " + Part_Time_Wage_per_Month);
+        }*/
+
+        public void Full_Time_Employee()
+        {
+            totalHoursWorked += Full_Time_Working_Hours;
+            dailwage = Wage_per_Hour * Full_Time_Working_Hours;
+            Console.WriteLine($"Day {Day}: Employee is Present. Daily Wage: ${dailwage}");
+
         }
+        public void Part_Time_Employee()
+        {
+            totalHoursWorked += Part_Time_Working_Hours;
+            dailwage = Part_Time_Working_Hours * Wage_per_Hour;
+            Console.WriteLine($"Day {Day}: Employee is Present. Daily Wage: ${dailwage}");
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage");
             Employee e = new Employee();
 
-            Console.WriteLine("1. Employee Attendance");
-            Console.WriteLine("2. Employee Wage");
-            Console.WriteLine("3. Wages for a Month");
+            Console.WriteLine("Select Employee Type");
+            Console.WriteLine("1. Full-Time Employee");
+            Console.WriteLine("2. Part-Time Employee");
             Console.WriteLine("Enter your choice: ");
 
             int choice = Convert.ToInt32(Console.ReadLine());
 
-            switch (choice)
+            while (totalHoursWorked < maxHours && totalDaysWorked < maxDays)
             {
-                case 1:
-                    e.Employee_Attendance();
-                    break;
+                Random random = new Random();
+                int attendanceCheck = random.Next(0, 2);
 
-                case 2:
-                    e.Employee_Wage();
-                    break;
+                if (attendanceCheck == 1)
+                {
+                    Day++;
+                    totalDaysWorked++;
 
-                case 3:
-                    e.Employee_Wage_per_Month();
-                    break;
+                    switch (choice)
+                    {
+                        case 1:
+                            e.Full_Time_Employee();
+                            break;
 
-                default:
-                    Console.WriteLine("Invlid Option.");
-                    break;
+                        case 2:
+                            e.Part_Time_Employee();
+                            break;
+
+                        default:
+                            Console.WriteLine("Invlid Option.");
+                            return;
+
+                    }
+                }
+                else
+                {
+                    Day++;
+                    Console.WriteLine($"Day {Day}: Employee is Absent.");
+                }
+            }
+                Console.WriteLine($"\nTotal Days Worked: {totalDaysWorked}");
+                Console.WriteLine($"Total Hours Worked: {totalHoursWorked}");
+                Console.WriteLine($"Total Wage fot the Month: ${dailwage * totalDaysWorked}");
 
             }
         }
-
     }
-}
