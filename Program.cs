@@ -35,10 +35,29 @@ namespace Employee_Wage_Problem
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage");
-
             Employee e = new Employee();
-            e.Employee_Attendance();
-            e.Employee_Wage();
+
+            Console.WriteLine("1. Employee Attendance");
+            Console.WriteLine("2. Employee Wage");
+            Console.WriteLine("Enter your choice (1 or 2): ");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    e.Employee_Attendance();
+                    break;
+
+                case 2:
+                    e.Employee_Wage();
+                    break;
+
+                default:
+                    Console.WriteLine("Invlid Option. Please Select 1 or 2.");
+                    break;
+
+            }
         }
 
     }
