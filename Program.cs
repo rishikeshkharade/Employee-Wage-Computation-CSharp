@@ -6,6 +6,7 @@ namespace Employee_Wage_Problem
     {
         const int Wage_per_Hour = 20;
         const int Full_Time_Working_Hours = 8;
+        const int Part_Time_Working_Hours = 4; 
 
         public void Employee_Attendance()
         {
@@ -24,8 +25,11 @@ namespace Employee_Wage_Problem
         }
         public void Employee_Wage()
         {
-            int Full_Time_Wage = Wage_per_Hour*Full_Time_Working_Hours;
+            int Full_Time_Wage = Wage_per_Hour * Full_Time_Working_Hours;
             Console.WriteLine("Daily Employee Wage is: " + Full_Time_Wage+"Rs");
+
+            int Part_Time_Wage = Wage_per_Hour * Part_Time_Working_Hours;
+            Console.WriteLine("Part Time Employee Wage is: " + Part_Time_Wage + "Rs");
 
         }
         static void Main(string[] args)
